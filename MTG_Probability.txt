@@ -1,3 +1,5 @@
+"""This script has all the necessary functions to allow you to calculate the chance that you will draw a certain number of lands from a MTG deck.  The numbers can be tweaked to show probabilities of situations from any deck of cards."""
+
 def factorial(n):
     fact=1
     for m in range(1,n+1):
