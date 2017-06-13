@@ -1,0 +1,22 @@
+def factorial(n):
+    fact=1
+    for m in range(1,n+1):
+        fact=fact*m
+    return fact
+
+def ncr(n,r):
+    comb=factorial(n)//(factorial(r)*factorial((n-r)))
+    return comb
+    
+def MTG(lands,desiredmin=2,desiredmax=2,cards=60,draws=0, start=7):
+    """Determines the probabaility of drawing a certain number of lands from your deck in your starting hand or after a certain number of draws."""
+    if desiredmin == desiredmax:        
+        prob=ncr(lands,desiredmin)*ncr((cards-lands),(start+draws-desiredmin))/ncr(cards,(start+draws))
+        return str((round(prob*100,1)))+"% chance you'll draw "+str(desiredmin)+" lands."
+    else:
+        prob=0
+        for m in range(desiredmin,(desiredmax+1)):
+            prob=prob+ncr(lands,m)*ncr((cards-lands),(start+draws-m))/ncr(cards,(start+draws))
+        return str((round(prob*100,1)))+"% chance you'll draw "+str(desiredmin)+"-"+str(desiredmax)+" lands."
+
+print(MTG(20,2,3,60,0,7))
